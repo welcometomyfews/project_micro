@@ -114,7 +114,7 @@ void loop() {
     delay(3000);  
     digitalWrite(led2,LOW);        
     myservo.write(90);  
-    delay(2000); 
+    delay(2200); 
     digitalWrite(led2,HIGH);
     myservo.write(45); 
     delay(3000);    
