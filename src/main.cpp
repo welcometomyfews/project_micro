@@ -2,12 +2,9 @@
 #include <LiquidCrystal_I2C.h>
 #include <Keypad.h>
 #include <Servo.h>
+#define led1 2
+#define led2 3
 LiquidCrystal_I2C lcd(0x27, 16, 2);
-int motorPin1 = 0;
-int motorPin2 = 1;
-int motorPin3 = 2;
-int motorPin4 = 3;
-int motorSpeed = 4;
 char val = '0';
 Servo myservo;
 int position = 0;
@@ -34,12 +31,10 @@ void setup() {
   lcd.init();
   lcd.backlight();
   myservo.attach(4);
-  pinMode(motorPin1,OUTPUT);
-  pinMode(motorPin2,OUTPUT);
-  pinMode(motorPin3,OUTPUT);
-  pinMode(motorPin4,OUTPUT);
-}
+  pinMode(led1,OUTPUT);
+  pinMode(led2,OUTPUT);
 
+}
 
 void loop() {
   if (position == 0)
@@ -93,32 +88,38 @@ void loop() {
       else {
         num = 0;
         check = 7;
+        digitalWrite(led1,HIGH); 
+        delay(200);
+        digitalWrite(led1,LOW); 
+        delay(200);
+        digitalWrite(led1,HIGH); 
+        delay(200);
+        digitalWrite(led1,LOW); 
+         delay(200);
+          digitalWrite(led1,HIGH); 
+        delay(200);
+        digitalWrite(led1,LOW); 
         lcd.clear();
         lcd.print("Password Wrong");
         delay(1000);
         lcd.clear();
       }
-      
     }
     if (check == 6)
     {
-      
+    digitalWrite(led2,HIGH);  
     lcd.clear();
-    lcd.print("Correct");
+    lcd.print("Correct");  
     myservo.write(180);         
-    delay(5000);          
+    delay(3000);  
+    digitalWrite(led2,LOW);        
     myservo.write(90);  
-    delay(3000); 
+    delay(2000); 
+    digitalWrite(led2,HIGH);
     myservo.write(45); 
-      delay(5000);          
+    delay(3000);    
+    digitalWrite(led2,LOW);      
     myservo.write(90); 
-  
-  /* for (pos = 180; pos >= 0; pos -= 1) {
-    myservo.write(pos);         
-    delay(15);                  
-  }*/
-
-     
     }
     
   }
